@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writer's Page</title>
+    <style>
+        /* Basic Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: green;
+            font-family: monospace;
+            font-size: 16px;
+            line-height: 1.5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Writing Area */
+        #writing-area {
+            width: 95%;
+            height: 95%;
+            background-color: black;
+            color: rgb(0, 191, 0);
+            font-family: monospace;
+            font-size: 16px;
+            line-height: 1.5;
+            padding: 20px;
+            box-sizing: border-box;
+            outline: none; /* Removes focus border */
+            white-space: pre-wrap; /* Preserves spaces and line breaks */
+            overflow-wrap: break-word; /* Breaks long words */
+            overflow-y: auto; /* Scrollable if text exceeds screen size */
+            cursor: text; /* Displays text cursor */
+            border: 0px solid rgb(0, 191, 0); /* Optional border for aesthetics */
+        }
+
+        /* Custom Scrollbar (Optional) */
+        #writing-area::-webkit-scrollbar {
+            width: 8px;
+        }
+        #writing-area::-webkit-scrollbar-thumb {
+            background: rgb(0, 191, 0);
+        }
+        #writing-area::-webkit-scrollbar-track {
+            background: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="writing-area" contenteditable="true">Start typing...</div>
+    <script>
+        const writingArea = document.getElementById('writing-area');
+
+        // Placeholder behavior: clear placeholder on focus, restore if empty
+        writingArea.addEventListener('focus', () => {
+            if (writingArea.innerText.trim() === 'Start typing...') {
+                writingArea.innerText = ''; // Clear placeholder
+            }
+        });
+
+        writingArea.addEventListener('blur', () => {
+            if (writingArea.innerText.trim() === '') {
+                writingArea.innerText = 'Start typing...'; // Restore placeholder
+            }
+        });
+    </script>
+</body>
+</html>
